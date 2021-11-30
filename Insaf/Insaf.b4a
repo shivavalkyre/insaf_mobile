@@ -1,0 +1,109 @@
+﻿Build1=Default,com.insaf
+Build2=insaf,com.insaf
+File1=Group 2489.png
+File10=LayoutModul.bal
+File11=NoConnection.bal
+File12=Poppins-Regular.ttf
+File2=Group 2990.png
+File3=Group 2992.png
+File4=home.png
+File5=indicator_active.png
+File6=indicator_inactive.png
+File7=insaf black png-01.png
+File8=Layout.bal
+File9=LayoutChat.bal
+FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup11=Default Group
+FileGroup12=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+Library1=animation
+Library10=webviewextras2
+Library2=appcompat
+Library3=core
+Library4=firebasenotifications
+Library5=javaobject
+Library6=phone
+Library7=reflection
+Library8=runtimepermissions
+Library9=sd_liquidprogress
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="30"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">~\n~        <item name="colorPrimary">#FDB715</item>~\n~        <item name="colorPrimaryDark">#FDB715</item>~\n~        <item name="colorAccent">#FDB715</item>~\n~        <item name="windowNoTitle">true</item>~\n~        <item name="windowActionBar">false</item>~\n~    </style>~\n~</resources>~\n~)~\n~AddActivityText("chat",~\n~<intent-filter>~\n~    <action android:name="android.intent.action.VIEW" />~\n~    <category android:name="android.intent.category.DEFAULT"></category>~\n~    <category android:name="android.intent.category.BROWSABLE"></category>~\n~	<data android:scheme="http" />~\n~	<data android:host="chat.disnavpriok.id" />~\n~</intent-filter> )~\n~~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)~\n~'push notification~\n~CreateResourceFromFile(Macro, FirebaseAnalytics.GooglePlayBase)~\n~CreateResourceFromFile(Macro, FirebaseAnalytics.Firebase)~\n~CreateResourceFromFile(Macro, FirebaseNotifications.FirebaseNotifications)~\n~~\n~AddPermission(android.permission.READ_EXTERNAL_STORAGE) ' Allows an application to read from external storage.~\n~AddPermission(android.permission.WRITE_EXTERNAL_STORAGE) ' Allows an application to write to external storage.~\n~SetApplicationAttribute(android:usesCleartextTraffic, "true")~\n~'End of default text.~\n~
+Module1=Chat
+Module2=FileProvider
+Module3=FirebaseMessaging
+Module4=general
+Module5=LoadWeb
+Module6=Modul
+Module7=NoConnection
+Module8=SlidingPanels
+Module9=Starter
+NumberOfFiles=12
+NumberOfLibraries=10
+NumberOfModules=9
+Version=11
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Insaf
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: True
+	#IncludeTitle: false
+#End Region
+#BridgeLogger: True 
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	'Private xui As XUI
+	Private timer1 As Timer
+	dim rp as RuntimePermissions
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	For Each permission As String In Array(rp.PERMISSION_READ_EXTERNAL_STORAGE, rp.PERMISSION_WRITE_EXTERNAL_STORAGE)
+		rp.CheckAndRequest(permission)
+		Wait For Activity_PermissionResult (permission As String, Result As Boolean)
+		If Result = False Then
+			ToastMessageShow("No permission!", True)
+			Activity.Finish
+			Return
+		End If
+	Next
+	timer1.Initialize("timer1",3000)
+	timer1.Enabled =True
+	Activity.LoadLayout("Layout")
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+
+
+Sub timer1_tick
+	timer1.Enabled=False
+	Activity.Finish
+	StartActivity(Modul)
+End Sub

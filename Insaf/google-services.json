@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "540777483203",
+    "project_id": "insaf-74435",
+    "storage_bucket": "insaf-74435.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540777483203:android:8ec7c075ed5fdd6c554b76",
+        "android_client_info": {
+          "package_name": "com.insaf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540777483203-1pjq5mv6k56f36iffs4b9nn2ibapq1do.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1WamUUqPOZ1JtkKtCqjyLxQDVGicRYnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540777483203-1pjq5mv6k56f36iffs4b9nn2ibapq1do.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
